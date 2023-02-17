@@ -24,13 +24,18 @@ app.get('/', (req, res) => {
 });
 
 io.on("connection", (socket) => {
-    /* console.log("connection is ready!"); */
     //whenever there is a send message event, then do something
     socket.on('send-message', (data) => {
-        socket.emit('message-from-server', data); //sending data from the client to the server side
+        socket.broadcast.emit('message-from-server', data); //sending data from the client to the server side
         console.log('message received on SERVER side', data);
     })
+
+    socket.on("disconnect", (socket) => {
+        console.log("User left.");
+    })
 })
+
+
 
 httpServer.listen(PORT, () => {
     console.log('Server is running...');
