@@ -26,7 +26,7 @@ app.get('/', (req, res) => {
 io.on("connection", (socket) => {
     //whenever there is a send message event, then do something
     socket.on('send-message', (data) => {
-        socket.broadcast.emit('message-from-server', data); //sending data from the client to the server side
+        io.emit('message-from-server', data); //sending data from the client to the server side
         console.log('message received on SERVER side', data);
     })
 
