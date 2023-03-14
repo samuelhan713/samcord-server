@@ -1,9 +1,6 @@
-export default class TypingController {
-    socket;
-    constructor(socket) {
-        this.socket = socket;
-    }
+import BaseController from "./BaseController.js";
 
+export default class TypingController extends BaseController {
     typingStarted = ({ roomId }) => {
         let skt = this.socket.broadcast;
         skt = roomId ? skt.to(roomId) : skt; //if there's a roomId then make the socket NOT broadcast

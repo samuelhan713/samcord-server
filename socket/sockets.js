@@ -1,15 +1,13 @@
 import TypingController from "./controllers/TypingController.js";
 import RoomController from "./controllers/RoomController.js";
+import MessageController from "./controllers/MessageController.js";
 
 const sockets = (socket) => {
     const typingController = new TypingController(socket);
     const roomController = new RoomController(socket);
+    const messageController = new MessageController(socket);
 
-    socket.on('send-message', ({ message, roomId }) => { //gobal chat will send a chat to ALL channels
-        let skt = socket.broadcast;
-        skt = roomId ? skt.to(roomId) : skt; //if there's a roomId then make the socket NOT broadcast
-        skt.emit('message-from-server', { message });
-    });
+    socket.on('send-message', messageController.sendMessage);
 
     socket.on('typing-started', typingController.typingStarted);
 
