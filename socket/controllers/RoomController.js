@@ -5,4 +5,8 @@ export default class RoomController extends BaseController {
         /* console.log("ROOM ID: ", roomId); */
         this.socket.join(roomId);
     };
+
+    newRoomCreated = ({ roomId }) => {
+        this.socket.broadcast.emit("new-room-created", { roomId });
+    };
 }

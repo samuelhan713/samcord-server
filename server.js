@@ -4,7 +4,9 @@ import { Server } from 'socket.io';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import sockets from './socket/sockets.js';
+import mongoose from 'mongoose';
 
+await mongoose.connect("mongodb+srv://samuelhan:bmKNJInbozs7hBiD@samcord.fj7cs3k.mongodb.net/test");
 
 const app = express();
 const PORT = 4000;

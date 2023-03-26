@@ -15,6 +15,8 @@ const sockets = (socket) => {
 
     socket.on('join-room', roomController.joinRoom);
 
+    socket.on('new-room-created', roomController.newRoomCreated);
+
     socket.on("disconnect", (socket) => {
         console.log("User left.");
     })
